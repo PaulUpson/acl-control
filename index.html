@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+        <script src="https://knockoutjs.com/downloads/knockout-3.3.0.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js" type="text/javascript"></script>
+        <script src="https://use.fontawesome.com/dfb842666c.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css"/>
+        <style rel="stylesheet">
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    float: right !important;
+    padding-left: 7px;
+}
+        </style>
+    </head>
+    <body>
+      <acl-panel bind-data=""></acl-panel>
+
+      <hr>
+
+      <pre data-bind="text: ko.toJSON($root, null, 2)"></pre>
+    </body>
+    <script>
+ko.bindingHandlers.select2 = {
+    init: function(element, valueAccessor) {
+      var options = ko.toJS(valueAccessor()) || {};
+      setTimeout(function() {
+          $(element).select2(options);
+      }, 0);
+    },
+    update: function(element, valueAccessor, allBindings) {
+    	var selectedItems = ko.unwrap(allBindings.get('initialItems'));
+        var select2 = $(element);
+        selectedItems.forEach(function(item) {
+            var option = new Option(item.name, item.id, true, true);
+            option.type = item.type;
+    		select2.append(option).trigger('change');
+        });
+    }
+};
+
+
+
+
+ko.applyBindings(new ViewModel());
+    </script>
+</html>

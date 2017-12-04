@@ -1,0 +1,15 @@
+﻿<div class="row-fields" data-bind="attr: { id: id }">
+    <label data-bind="text: labelText"></label>
+    <select data-bind="initialItems: selectedItems, 
+            selectedOptions: selectedIds, 
+            select2: { 
+                placeholder: 'Select a user/group', 
+                multiple: true, 
+                templateResult: optionTemplate, 
+                templateSelection: optionTemplate, 
+                ajax: ajax, 
+                minimumInputLength: 3
+            }, 
+            disable: !canUserEditGrants()" multiple="multiple"></select>
+    <br />Selected: <span data-bind="text: selectedIds"></span>
+</div>

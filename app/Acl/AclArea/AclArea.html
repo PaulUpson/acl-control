@@ -1,0 +1,17 @@
+﻿<div class="col-sm-12 col-md-12 col-lg-6 col-center-block" data-bind="visible: isLoading">
+    <span class="fa fa-circle-o-notch fa-spin"></span> loading...
+</div>
+
+<!-- ko foreach: aclControlData -->
+<acl-control params="labelText: $data.labelText, 
+             values: $data.values, 
+             type: $data.type, 
+             excludeOwner: $data.type == 'Deny', 
+             options: $parent.allOptions, 
+             allSelectedIds: $parent.allSelectedIds, 
+             canUserEditGrants: $parent.canUserEditGrants, 
+             owner: $parent.owner, 
+             aclDifference: $parent.aclDifference, 
+             ownerGroupData: $parent.ownerGroupData">
+</acl-control>
+<!-- /ko -->
